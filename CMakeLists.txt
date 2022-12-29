@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.2)
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
-project(hw10_join VERSION ${PROJECT_VESRION})
+project(join_server VERSION ${PROJECT_VESRION})
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -37,12 +37,12 @@ set(UTILS
 
 SET(SOURCES ${DATABASE} ${NETWORK} ${UTILS})
 
-add_executable(join_server src/main.cpp ${SOURCES} ${HEADERS})
+add_executable(${PROJECT_NAME} src/main.cpp ${SOURCES} ${HEADERS})
 
-target_include_directories(join_server PRIVATE "${CMAKE_BINARY_DIR}" "src/include")
-target_link_libraries(join_server PRIVATE Boost::program_options Boost::system pthread stdc++fs)
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}" "src/include")
+target_link_libraries(${PROJECT_NAME} PRIVATE Boost::program_options Boost::system pthread stdc++fs)
 
-install(TARGETS join_server DESTINATION bin)
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
